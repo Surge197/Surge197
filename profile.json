@@ -1,0 +1,45 @@
+{
+  "username": "Surge197",
+  "identity": "SURGE",
+  "positioning": "AI • AUTOMATION • ACCOUNTING SYSTEMS",
+  "statement": "Building intelligent systems where AI, automation and accounting operations meet.",
+  "focus": ["AI agents", "Accounting automation", "GST reconciliation", "Business systems"],
+  "projects": [
+    {
+      "name": "ELVARC",
+      "status": "IN DEVELOPMENT",
+      "category": "AI / SOFTWARE / AUTOMATION",
+      "lines": ["An ecosystem for intelligent software", "and practical business automation."],
+      "description": "An AI, software and automation ecosystem. Enterprise • Leadership • Ventures • Architecture • Research • Computing.",
+      "url": null
+    },
+    {
+      "name": "FORGE",
+      "status": "EXPERIMENTAL",
+      "category": "MULTI-AGENT AI PLATFORM",
+      "lines": ["AI gateway, model adapters and", "multi-agent orchestration."],
+      "description": "An experimental AI chatbot and multi-agent platform exploring an AI gateway, model adapters, Gemini and Anthropic Claude integrations, and AI orchestration.",
+      "url": null
+    },
+    {
+      "name": "AccuTax",
+      "status": "BUILDING",
+      "category": "GST RECONCILIATION",
+      "lines": ["Tally × GST portal data.", "Monthly and aggregate reconciliation."],
+      "description": "GST reconciliation across Tally and GST portal data: GSTR-1, GSTR-2B and GSTR-3B; monthly and aggregate reconciliation; taxable value, total value, CGST, SGST and IGST difference analysis.",
+      "url": null
+    },
+    {
+      "name": "AI Review Platform",
+      "status": "DEVELOPING",
+      "category": "ACCOUNTING INTELLIGENCE",
+      "lines": ["AI-assisted review, issue detection", "and centralized accounting findings."],
+      "description": "A developing AI-powered accounting review platform to analyse operations, identify issues and centralize findings. Long-term direction: client-specific AI agents reporting into one central system.",
+      "url": null
+    }
+  ],
+  "automation": ["Tally automation", "Zoho Books", "GST reconciliation", "Bank reconciliation", "Financial statement preparation", "Data processing", "Accounting workflow automation", "AI-assisted accounting review", "n8n automation", "API integrations"],
+  "verified_stack": ["React", "TypeScript", "Node.js", "Gemini API"],
+  "profile_stack": ["Python", "SVG", "GitHub Actions"],
+  "palette": {"background":"#0c1118","panel":"#111a24","border":"#263340","text":"#f0f4f7","muted":"#a3b1bf","accent":"#78d5c2","dim":"#64788d"}
+}
