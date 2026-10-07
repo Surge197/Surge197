@@ -7,8 +7,8 @@
     "start": "2025-10-05",
     "end": "2026-10-07"
   },
-  "total_contributions": 10,
-  "active_days": 5,
+  "total_contributions": 38,
+  "active_days": 6,
   "days": [
     {
       "date": "2025-10-05",
@@ -1828,7 +1828,7 @@
     {
       "date": "2026-10-03",
       "count": 2,
-      "level": 4
+      "level": 3
     },
     {
       "date": "2026-10-04",
@@ -1847,8 +1847,8 @@
     },
     {
       "date": "2026-10-07",
-      "count": 0,
-      "level": 0
+      "count": 28,
+      "level": 4
     }
   ]
 }
