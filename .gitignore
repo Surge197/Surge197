@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+*.tmp
+.env
+.env.*
+.venv/
+node_modules/
+preview.html
+preview-*.png
+validation-report.json
