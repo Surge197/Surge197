@@ -1,0 +1,83 @@
+name: Update SURGE profile
+
+"on":
+  schedule:
+    - cron: "23 3 * * *" # Daily around 08:53 IST / 03:23 UTC; GitHub may delay schedules.
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "profile.json"
+      - "scripts/**"
+      - "tests/**"
+      - ".github/workflows/update-profile.yml"
+  pull_request:
+    paths:
+      - "profile.json"
+      - "scripts/**"
+      - "tests/**"
+      - ".github/workflows/update-profile.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: surge-profile-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    name: Validate checked-in profile
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Check out source without write credentials
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+      - name: Run unit tests (standard library; no pip install needed)
+        run: python -m unittest discover -s tests -v
+      - name: Validate current generated files
+        run: python scripts/validate.py
+      - name: Confirm reproducible offline generation
+        run: |
+          python scripts/build.py --offline
+          git diff --exit-code -- README.md assets data/contributions.json
+
+  refresh:
+    name: Refresh actual public activity
+    needs: validate
+    if: github.event_name != 'pull_request' && github.repository == 'Surge197/Surge197'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      contents: write
+    steps:
+      - name: Check out default branch
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          fetch-depth: 1
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+      - name: Fetch real calendar and regenerate assets
+        run: python scripts/build.py
+      - name: Commit only actual content changes
+        env:
+          PROFILE_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- README.md assets data/contributions.json
+          if git diff --cached --quiet; then
+            echo "No generated content changed; no commit needed."
+            exit 0
+          fi
+          git commit -m "chore: refresh public profile activity [skip ci]"
+          git push origin "HEAD:${PROFILE_BRANCH}"
