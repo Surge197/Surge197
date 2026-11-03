@@ -5,7 +5,7 @@
   "visibility": "public-profile-calendar",
   "range": {
     "start": "2025-11-02",
-    "end": "2026-11-02"
+    "end": "2026-11-03"
   },
   "total_contributions": 46,
   "active_days": 9,
@@ -1837,6 +1837,11 @@
     },
     {
       "date": "2026-11-02",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2026-11-03",
       "count": 0,
       "level": 0
     }
